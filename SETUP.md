@@ -19,7 +19,7 @@ docker-compose up -d
 
 ### Clean restart
 ```
-docker-compost down -v
+docker-compose down -v
 docker system prune -a -f --volumes
 composer install
 npm install
