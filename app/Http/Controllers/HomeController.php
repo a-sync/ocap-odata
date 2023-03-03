@@ -25,7 +25,7 @@ class HomeController extends Controller
             // $users = DB::select('select * from users where active = ?', [1]);
             //$items = DB::select('select * from migrations');
 
-            $count = Operation::where('event !=', '')->count();
+            $count = Operation::where('event', '!=', '')->count();
 
         } catch (\Exception $e) {
             echo('<pre>ERR: ' . dump($e). '</pre>');

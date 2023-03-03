@@ -67,9 +67,9 @@ return [
         'ocap-stats' => [
             'driver' => 'mysql',
             'url' => env('REMOTE_DATABASE_URL'),
-            'host' => env('REMOTE_DB_HOST', '127.0.0.1'),
+            'host' => env('REMOTE_DB_HOST', 'mariadb'),
             'port' => env('REMOTE_DB_PORT', '3306'),
-            'database' => env('REMOTE_DB_DATABASE', 'ocapstats'),
+            'database' => env('REMOTE_DB_DATABASE', 'ocap_odata'),
             'username' => env('REMOTE_DB_USERNAME', 'root'),
             'password' => env('REMOTE_DB_PASSWORD', 'rootpass'),
             'unix_socket' => env('REMOTE_DB_SOCKET', ''),
