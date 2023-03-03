@@ -16,10 +16,4 @@ class Event extends Model
      */
     public $timestamps = false;
 
-    /**
-     * The database connection that should be used by the model.
-     *
-     * @var string
-     */
-    protected $connection = 'ocap-stats';
 }

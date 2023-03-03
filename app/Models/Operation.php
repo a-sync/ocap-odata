@@ -22,12 +22,5 @@ class Operation extends Model
      * @var bool
      */
     public $timestamps = false;
-    // const UPDATED_AT = 'updated';
 
-    /**
-     * The database connection that should be used by the model.
-     *
-     * @var string
-     */
-    protected $connection = 'ocap-stats';
 }

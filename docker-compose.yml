@@ -11,7 +11,7 @@ services:
         ports:
             - 3306:3306
         environment:
-            MYSQL_DATABASE: ocap_odata
+            MYSQL_DATABASE: ocapstats
             MYSQL_ROOT_PASSWORD: rootpass
         volumes:
             - mariadbdata:/var/lib/mysql

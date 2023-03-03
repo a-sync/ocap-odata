@@ -4,12 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\HasCompositePrimaryKey;
 
 class Timestamp extends Model
 {
     use HasFactory;
-    use HasCompositePrimaryKey;
 
     /**
      * Indicates if the model should be timestamped.
@@ -19,9 +17,11 @@ class Timestamp extends Model
     public $timestamps = false;
 
     /**
-     * The database connection that should be used by the model.
+     * The attributes that should be cast.
      *
-     * @var string
+     * @var array<string, string>
      */
-    protected $connection = 'ocap-stats';
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
 }
