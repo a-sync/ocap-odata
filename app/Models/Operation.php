@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Operation extends Model
 {
-    use HasFactory;
-
     /**
      * The table associated with the model.
      *
@@ -37,5 +36,47 @@ class Operation extends Model
      */
     public $timestamps = false;
 
-    
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'date' => 'date',
+        'updated' => 'timestamp',
+        'start_time' => 'datetime',
+        'capture_delay' => 'float'
+    ];
+
+    /**
+     * The ops that belong to the user.
+     */
+    public function players(): BelongsToMany
+    {
+        return $this->belongsToMany(Player::class, 'entities', 'operation_id', 'player_id');
+    }
+
+    /**
+     * Get the timestamps associated with the op.
+     */
+    public function timestamps(): HasMany
+    {
+        return $this->hasMany(Timestamp::class);
+    }
+
+    /**
+     * Get the entities associated with the op.
+     */
+    public function entities(): HasMany
+    {
+        return $this->hasMany(Entity::class);
+    }
+
+    /**
+     * Get the events associated with the op.
+     */
+    public function events(): HasMany
+    {
+        return $this->hasMany(Event::class);
+    }
 }

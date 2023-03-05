@@ -2,12 +2,32 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Event extends Model
 {
-    use HasFactory;
+    use \Awobaz\Compoships\Compoships;
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'events';
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'aid';
+
+    /**
+     * Indicates if the model's ID is auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = true;
 
     /**
      * Indicates if the model should be timestamped.
@@ -16,4 +36,27 @@ class Event extends Model
      */
     public $timestamps = false;
 
+    /**
+     * Get the op that owns the entity.
+     */
+    public function operation(): BelongsTo
+    {
+        return $this->belongsTo(Operation::class);
+    }
+
+    /**
+     * Get the victim associated with the event.
+     */
+    public function victim(): \Awobaz\Compoships\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Entity::class, ['id', 'operation_id'], ['victim_id', 'operation_id']);
+    }
+
+    /**
+     * Get the attacker associated with the event.
+     */
+    public function attacker(): \Awobaz\Compoships\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Entity::class, ['id', 'operation_id'], ['attacker_id', 'operation_id']);
+    }
 }
