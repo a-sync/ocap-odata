@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.8.1"
     },
     "require-dev": {
+        "doctrine/dbal": "^3.6",
         "fakerphp/faker": "^1.21",
         "mockery/mockery": "^1.5.1",
         "nunomaduro/collision": "^7.0.5",
@@ -55,6 +56,6 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }

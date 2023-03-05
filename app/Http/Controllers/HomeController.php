@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
  
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\Operation;
 
 class HomeController extends Controller
@@ -14,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $items = [];
+        $items = null;
  
         // Test database connection
         try {
@@ -23,12 +24,13 @@ class HomeController extends Controller
             //DB::select('select 1');
 
             // $users = DB::select('select * from users where active = ?', [1]);
-            //$items = DB::select('select * from migrations');
+            //$items = DB::select('select * from operations');
 
-            $count = Operation::where('event', '!=', '')->count();
+            //$items = Operation::all();
+            $items = Operation::where('event', '!=', '')->count();
 
         } catch (\Exception $e) {
-            echo('<pre>ERR: ' . dump($e). '</pre>');
+            dd($e);
         }
 
         return view('welcome', ['items' => $items]);

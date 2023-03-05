@@ -51,14 +51,11 @@
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                <?php
-
-                                if (isset($items) && count($items) > 0) {
-                                    foreach ($items as $m) {
-                                        echo $m->id . ' - ' . $m->migration. '<br>';
-                                    }
-                                }
-                                ?>
+                                    <?php
+                                        echo '<pre>';//debug
+                                        var_dump($items);//debug
+                                        echo '</pre>';//debug
+                                    ?>
                                 </div>
                             </div>
                         </div>

@@ -7,6 +7,11 @@ docker-compose up -d
 php artisan migrate
 ```
 
+### Checking db connection
+```
+env DB_HOST=localhost php artisan db:show
+```
+
 ### Shutting down the dev env
 ```
 docker-compose down

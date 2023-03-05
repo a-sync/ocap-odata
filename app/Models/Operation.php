@@ -10,6 +10,20 @@ class Operation extends Model
     use HasFactory;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'operations';
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
      * Indicates if the model's ID is auto-incrementing.
      *
      * @var bool
@@ -23,4 +37,5 @@ class Operation extends Model
      */
     public $timestamps = false;
 
+    
 }
