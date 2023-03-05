@@ -15,10 +15,12 @@ services:
             MYSQL_ROOT_PASSWORD: rootpass
         volumes:
             - mariadbdata:/var/lib/mysql
-            # - ../ocap-stats/.sql/db.skeleton.sql:/docker-entrypoint-initdb.d/db.skeleton.sql:ro
+            # - ../ocap-stats/.sql/db.skeleton.sql:/docker-entrypoint-initdb.d/ocapstats.skeleton.sql:ro
     adminer:
         image: adminer
         ports:
             - 8080:8080
+        # volumes:
+        #     - ../ocap-stats/.sql/fnf-seed-2022-07-10.sql.gz:/var/www/html/adminer.sql.gz:ro
 volumes:
     mariadbdata: {}
