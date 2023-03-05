@@ -33,6 +33,6 @@ class HomeController extends Controller
             dd($e);
         }
 
-        return view('welcome', ['items' => $items]);
+        return view('welcome', ['items' => $items, 'ep' => \Lodata::getEndpoint()]);
     }
 }
