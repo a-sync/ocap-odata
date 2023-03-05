@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Flat3\Lodata\Attributes\LodataRelationship;
 
 class Entity extends Model
 {
@@ -40,6 +41,7 @@ class Entity extends Model
     /**
      * Get the op that owns the entity.
      */
+    #[LodataRelationship]
     public function operation(): BelongsTo
     {
         return $this->belongsTo(Operation::class);
@@ -48,6 +50,7 @@ class Entity extends Model
     /**
      * Get the player that owns the entity.
      */
+    #[LodataRelationship]
     public function player(): BelongsTo
     {
         return $this->belongsTo(Player::class);
@@ -56,16 +59,18 @@ class Entity extends Model
     /**
      * Get the events associated with the entity.
      */
-    public function victim_events(): \Awobaz\Compoships\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(Event::class, ['id', 'operation_id'], ['victim_id', 'operation_id']);
-    }
+    // #[LodataRelationship]
+    // public function victim_events(): \Awobaz\Compoships\Database\Eloquent\Relations\HasMany
+    // {
+    //     return $this->hasMany(Event::class, ['id', 'operation_id'], ['victim_id', 'operation_id']);
+    // }
 
-    /**
-     * Get the events associated with the entity.
-     */
-    public function attacker_events(): \Awobaz\Compoships\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(Event::class, ['id', 'operation_id'], ['attacker_id', 'operation_id']);
-    }
+    // /**
+    //  * Get the events associated with the entity.
+    //  */
+    // #[LodataRelationship]
+    // public function attacker_events(): \Awobaz\Compoships\Database\Eloquent\Relations\HasMany
+    // {
+    //     return $this->hasMany(Event::class, ['id', 'operation_id'], ['attacker_id', 'operation_id']);
+    // }
 }

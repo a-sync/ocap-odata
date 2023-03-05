@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Flat3\Lodata\Attributes\LodataRelationship;
 
 class Operation extends Model
 {
@@ -51,6 +52,7 @@ class Operation extends Model
     /**
      * The ops that belong to the user.
      */
+    #[LodataRelationship]
     public function players(): BelongsToMany
     {
         return $this->belongsToMany(Player::class, 'entities', 'operation_id', 'player_id');
@@ -59,6 +61,7 @@ class Operation extends Model
     /**
      * Get the timestamps associated with the op.
      */
+    #[LodataRelationship]
     public function timestamps(): HasMany
     {
         return $this->hasMany(Timestamp::class);
@@ -67,6 +70,7 @@ class Operation extends Model
     /**
      * Get the entities associated with the op.
      */
+    #[LodataRelationship]
     public function entities(): HasMany
     {
         return $this->hasMany(Entity::class);
@@ -75,6 +79,7 @@ class Operation extends Model
     /**
      * Get the events associated with the op.
      */
+    #[LodataRelationship]
     public function events(): HasMany
     {
         return $this->hasMany(Event::class);

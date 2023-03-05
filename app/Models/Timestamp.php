@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Flat3\Lodata\Attributes\LodataRelationship;
 
 class Timestamp extends Model
 {
@@ -50,6 +51,7 @@ class Timestamp extends Model
     /**
      * Get the op that owns the timestamp.
      */
+    #[LodataRelationship]
     public function operation(): BelongsTo
     {
         return $this->belongsTo(Operation::class);

@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
  
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use App\Models\Operation;
+use Flat3\Lodata\Facades\Lodata;
 
 class HomeController extends Controller
 {
@@ -15,24 +14,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $items = null;
+        $debug = [];
  
         // Test database connection
         try {
-            //$pdo = DB::connection()->getPdo();
-            //DB::getDefaultConnection();
-            //DB::select('select 1');
-
-            // $users = DB::select('select * from users where active = ?', [1]);
-            //$items = DB::select('select * from operations');
-
-            //$items = Operation::all();
-            $items = Operation::where('event', '!=', '')->count();
-
+            $debug['ops'] = \App\Models\Operation::where('event', '!=', '')->count();
+            $debug['timestamps'] = \App\Models\Timestamp::count();
+            $debug['entities'] = \App\Models\Entity::count();
+            $debug['events'] = \App\Models\Event::count();
+            $debug['players'] = \App\Models\Player::where('alias_of', '0')->count();
+            $debug['aliases'] = \App\Models\Player::where('alias_of', '!=', '0')->count();
         } catch (\Exception $e) {
-            dd($e);
+            $debug['database_error'] = $e->getMessage();
         }
 
-        return view('welcome', ['items' => $items, 'ep' => \Lodata::getEndpoint()]);
+        return view('welcome', ['debug' => print_r($debug, true), 'ep' => Lodata::getEndpoint()]);
     }
 }
