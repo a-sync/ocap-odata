@@ -6,8 +6,8 @@ services:
             - 80:8080
         volumes:
             - .:/var/www/html
-    mariadb:
-        image: mariadb:10.7
+    db:
+        image: mariadb
         ports:
             - 3306:3306
         environment:
@@ -15,9 +15,9 @@ services:
             MYSQL_ROOT_PASSWORD: rootpass
         volumes:
             - mariadbdata:/var/lib/mysql
-            #- ./.sql/db.skeleton.sql:/docker-entrypoint-initdb.d/ocap-stats.skeleton.sql:ro
+            # - ../ocap-stats/.sql/db.skeleton.sql:/docker-entrypoint-initdb.d/db.skeleton.sql:ro
     adminer:
-        image: adminer:4
+        image: adminer
         ports:
             - 8080:8080
 volumes:
