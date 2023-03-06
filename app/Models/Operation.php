@@ -50,7 +50,7 @@ class Operation extends Model
     ];
 
     /**
-     * The ops that belong to the user.
+     * The players of the op.
      */
     #[LodataRelationship]
     public function players(): BelongsToMany
@@ -59,7 +59,7 @@ class Operation extends Model
     }
 
     /**
-     * Get the timestamps associated with the op.
+     * Get the timestamps of the op.
      */
     #[LodataRelationship]
     public function timestamps(): HasMany
@@ -68,7 +68,7 @@ class Operation extends Model
     }
 
     /**
-     * Get the entities associated with the op.
+     * Get the entities of the op.
      */
     #[LodataRelationship]
     public function entities(): HasMany
@@ -77,11 +77,13 @@ class Operation extends Model
     }
 
     /**
-     * Get the events associated with the op.
+     * Get the events of the op.
      */
     #[LodataRelationship]
     public function events(): HasMany
     {
         return $this->hasMany(Event::class);
     }
+
+    // TODO: commanders
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Flat3\Lodata\Attributes\LodataRelationship;
 
 class Event extends Model
@@ -37,7 +38,7 @@ class Event extends Model
     public $timestamps = false;
 
     /**
-     * Get the op that owns the entity.
+     * Get the op of the event.
      */
     #[LodataRelationship]
     public function operation(): BelongsTo
@@ -45,21 +46,53 @@ class Event extends Model
         return $this->belongsTo(Operation::class);
     }
 
-    // /**
-    //  * Get the victim associated with the event.
-    //  */
-    // #[LodataRelationship]
-    // public function victim(): \Awobaz\Compoships\Database\Eloquent\Relations\BelongsTo
-    // {
-    //     return $this->belongsTo(Entity::class, ['id', 'operation_id'], ['victim_id', 'operation_id']);
-    // }
+    /**
+     * Get the victim entity associated with the event.
+     */
+    #[LodataRelationship]
+    public function victim(): BelongsTo
+    {
+        return $this->belongsTo(Entity::class, 'victim_aid', 'aid');
+    }
 
-    // /**
-    //  * Get the attacker associated with the event.
-    //  */
-    // #[LodataRelationship]
-    // public function attacker(): \Awobaz\Compoships\Database\Eloquent\Relations\BelongsTo
-    // {
-    //     return $this->belongsTo(Entity::class, ['id', 'operation_id'], ['attacker_id', 'operation_id']);
-    // }
+    /**
+     * Get the attacker entity associated with the event.
+     */
+    #[LodataRelationship]
+    public function attacker(): BelongsTo
+    {
+        return $this->belongsTo(Entity::class, 'attacker_aid', 'aid');
+    }
+
+    /**
+     * Get the victim player associated with the event.
+     */
+    #[LodataRelationship]
+    public function victim_player(): HasOneThrough
+    {
+        return $this->hasOneThrough(
+            Player::class,
+            Entity::class,
+            'aid',
+            'id',
+            'victim_aid',
+            'player_id',
+        );
+    }
+
+    /**
+     * Get the attacker player associated with the event.
+     */
+    #[LodataRelationship]
+    public function attacker_player(): HasOneThrough
+    {
+        return $this->hasOneThrough(
+            Player::class,
+            Entity::class,
+            'aid',
+            'id',
+            'attacker_aid',
+            'player_id',
+        );
+    }
 }

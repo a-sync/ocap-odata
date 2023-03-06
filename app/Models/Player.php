@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Flat3\Lodata\Attributes\LodataRelationship;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Player extends Model
 {
@@ -63,5 +64,37 @@ class Player extends Model
     public function entities(): HasMany
     {
         return $this->hasMany(Entity::class);
+    }
+
+    /**
+     * Get the events associated with the player as victim.
+     */
+    #[LodataRelationship]
+    public function victim_events(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            Event::class,
+            Entity::class,
+            'player_id',
+            'victim_aid',
+            'id',
+            'aid'
+        );
+    }
+
+    /**
+     * Get the events associated with the player as attacker.
+     */
+    #[LodataRelationship]
+    public function attacker_events(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            Event::class,
+            Entity::class,
+            'player_id',
+            'attacker_aid',
+            'id',
+            'aid'
+        );
     }
 }
