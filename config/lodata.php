@@ -70,7 +70,7 @@ return [
         /**
          * How many seconds to cache discovered data for. Setting to null will cache forever.
          */
-        'ttl' => env('LODATA_DISCOVERY_TTL', 300),
+        'ttl' => env('LODATA_DISCOVERY_TTL', 0),
 
         /*
          * The blacklist of property names that will not be added during auto-discovery

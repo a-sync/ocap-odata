@@ -29,5 +29,14 @@ class AppServiceProvider extends ServiceProvider
         Lodata::discover(\App\Models\Entity::class);
         Lodata::discover(\App\Models\Player::class);
         Lodata::discover(\App\Models\Event::class);
+
+        //$playerType = Lodata::getEntityType('player');
+        //$playerType->addProperty( new CmdRivals( 'rivals', Type::string() ) );
+
+        //todo: add searchable fields
+        // $airportType = Lodata::getEntityType(\App\Models\Operation::class);
+        // $airportType->getProperty('mission_name')->setSearchable();
+        // $airportType->getProperty('mission_author')->setSearchable();
+
     }
 }

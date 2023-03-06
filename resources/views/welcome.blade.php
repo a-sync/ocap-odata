@@ -78,14 +78,6 @@
                             </div>
                             <pre class="p0 ml-8 text-gray-600 dark:text-gray-400 text-sm">{{ \Lodata::getOdcUrl('Operations') }}</pre>
                         </div>
-                            <?php
-/*
- * @method static string getEndpoint() Get the REST endpoint of this model
- * @method static string getOdcUrl(Identifier|string $set) Get the Office Data Connection URL of the provided entity set
- * @method static string getPbidsUrl() Get the PowerBI discovery URL of this service
- * @method static string getOpenApiUrl() Get the OpenAPI specification document URL of this service
-*/
-?>
 
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
                             <div class="flex items-center">
@@ -124,7 +116,7 @@
 
                             <div class="ml-4 mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                 lodata, odata2, ocap-stats, ocap, etc.
-                                    
+                                
                             </div>
                         </div>
 

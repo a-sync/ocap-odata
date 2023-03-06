@@ -1,15 +1,14 @@
 ## Starting up a new dev env
 ```
 composer install
-npm install
+npm i
 npm run dev
 docker-compose up -d
-php artisan migrate
 ```
 
 ### Checking db connection
 ```
-env DB_HOST=localhost php artisan db:show
+./artisan.sh db:show
 ```
 
 ### Shutting down the dev env
@@ -29,10 +28,9 @@ docker system prune -a -f --volumes
 composer install
 npm install
 npm run dev
-php artisan route:clear
-php artisan config:clear
-php artisan cache:clear
+./artisan.sh route:clear
+./artisan.sh config:clear
+./artisan.sh cache:clear
 docker-compose build --no-cache
 docker-compose up -d
-php artisan migrate:refresh
 ```

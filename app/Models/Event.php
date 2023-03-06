@@ -20,7 +20,7 @@ class Event extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'aid';
+    protected $primaryKey = 'id';
 
     /**
      * Indicates if the model's ID is auto-incrementing.
