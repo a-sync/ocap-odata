@@ -6,7 +6,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "awobaz/compoships": "^2.2",
         "flat3/lodata": "^5.25",
         "guzzlehttp/guzzle": "^7.5",
         "laravel/framework": "^10.2",
@@ -15,10 +14,7 @@
     },
     "require-dev": {
         "doctrine/dbal": "^3.6",
-        "fakerphp/faker": "^1.21",
-        "mockery/mockery": "^1.5.1",
         "nunomaduro/collision": "^7.0.5",
-        "phpunit/phpunit": "^10.0.14",
         "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {

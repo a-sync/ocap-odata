@@ -8,7 +8,6 @@ use Flat3\Lodata\Attributes\LodataRelationship;
 
 class Event extends Model
 {
-    use \Awobaz\Compoships\Compoships;
     /**
      * The table associated with the model.
      *
