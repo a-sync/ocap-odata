@@ -50,15 +50,6 @@ class Operation extends Model
     ];
 
     /**
-     * The players of the op.
-     */
-    #[LodataRelationship]
-    public function players(): BelongsToMany
-    {
-        return $this->belongsToMany(Player::class, 'entities', 'operation_id', 'player_id');
-    }
-
-    /**
      * Get the timestamps of the op.
      */
     #[LodataRelationship]
@@ -85,5 +76,14 @@ class Operation extends Model
         return $this->hasMany(Event::class);
     }
 
-    // TODO: commanders
+    /**
+     * The players of the op.
+     */
+    #[LodataRelationship]
+    public function players(): BelongsToMany
+    {
+        return $this->belongsToMany(Player::class, 'entities', 'operation_id', 'player_id');
+    }
+
+    //TODO: commanders
 }

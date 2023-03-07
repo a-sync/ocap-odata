@@ -21,7 +21,7 @@ docker-compose down
 docker-compose up -d
 ```
 
-### Clean restart
+## Clean restart
 ```
 docker-compose down -v
 docker system prune -a -f --volumes
