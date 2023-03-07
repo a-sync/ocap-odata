@@ -1,7 +1,7 @@
-# OCAP-ODATA
+# ocap-odata
 
 # About
- * provides ODATA v4.01 API to ocap-stats database
+ * provides OData v4.01 API to ocap-stats database
  * built on laravel 10 + loadata 2
  * only a thin layer of eloquent models and lodata traits
 
@@ -14,17 +14,11 @@ You should use env vars (env.example) to configure the database host/user/pw/dbn
 # Development requirements
  * docker compose 2 or later
  * composer 2.2 or later
- * nodejs 16 or later
 
 ## Setup
 Install composer dependencies.
 ```
 composer install
-```
-
-Install node dependencies.
-```
-npm i # or yarn
 ```
 
 ## Config
@@ -38,8 +32,34 @@ LOG_LEVEL=debug
 
 ## Running locally
 ```
-npm run dev # or yarn dev
 docker-compose up
 ```
 
-Load the db schema and a seed from ocap-stats/.sql/
+⚠ You need to load the db schema and a seed from ocap-stats/.sql/ manually when connecting to the default db instance created via docker-compose.
+
+### Checking db connection
+```
+./artisan.sh db:show
+```
+
+#### Shutting down the dev env
+```
+docker-compose down
+```
+
+#### Starting up the dev env again
+```
+docker-compose up -d
+```
+
+### Clean restart
+```
+docker-compose down -v
+docker system prune -a -f --volumes
+composer install
+./artisan.sh route:clear
+./artisan.sh config:clear
+./artisan.sh cache:clear
+docker-compose build --no-cache
+docker-compose up -d
+```

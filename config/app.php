@@ -15,7 +15,19 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'OCAP OData v4.01 API'),
+    'name' => env('APP_NAME', 'OCAP OData API'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Data source URL
+    |--------------------------------------------------------------------------
+    |
+    | When this value is configured, a `Data source` link will appear on the
+    | home page pointing to this value.
+    |
+    */
+
+    'data_source_url' => env('APP_DATA_SOURCE_URL', null),
 
     /*
     |--------------------------------------------------------------------------
