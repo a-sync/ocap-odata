@@ -30,7 +30,7 @@ return [
     /*
      * This is an OData concept to group your data model according to a globally unique namespace. Some clients may use this information for display purposes.
      */
-    'namespace' => env('LODATA_NAMESPACE', 'space.devs.ocap.odata'),
+    'namespace' => env('LODATA_NAMESPACE', 'space.devs.ocap'),
 
     /*
      * The default version of the OData protocol to support for every request.

@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Flat3\Lodata\Attributes\LodataRelationship;
@@ -49,12 +49,21 @@ class Player extends Model
     }
 
     /**
-     * Get the player associated with this alias.
+     * Get the player this alias belongs to.
      */
     #[LodataRelationship]
-    public function player(): HasOne
+    public function player(): BelongsTo
     {
-        return $this->hasOne(Player::class, 'id', 'alias_of');
+        return $this->belongsTo(Player::class, 'id', 'alias_of');
+    }
+
+    /**
+     * Get the aliases of this player.
+     */
+    #[LodataRelationship]
+    public function aliases(): HasMany
+    {
+        return $this->hasMany(Player::class, 'id', 'alias_of');
     }
 
     /**

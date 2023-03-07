@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -48,6 +49,18 @@ class Operation extends Model
         'start_time' => 'datetime',
         'capture_delay' => 'float'
     ];
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::addGlobalScope('event', function (Builder $builder) {
+            $builder->where('event', '!=', '');
+        });
+    }
 
     /**
      * Get the timestamps of the op.

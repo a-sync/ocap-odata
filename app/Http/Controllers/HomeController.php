@@ -18,7 +18,7 @@ class HomeController extends Controller
  
         // Test database connection
         try {
-            $debug['ops'] = \App\Models\Operation::where('event', '!=', '')->count();
+            $debug['ops'] = \App\Models\Operation::count();
             $debug['timestamps'] = \App\Models\Timestamp::count();
             $debug['entities'] = \App\Models\Entity::count();
             $debug['events'] = \App\Models\Event::count();

@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'ocap-odata'),
+    'name' => env('APP_NAME', 'OCAP OData v4.01 API'),
 
     /*
     |--------------------------------------------------------------------------

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>OCAP OData v4.01 API</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ config('app.name') }}</title>
 
         <!-- Styles -->
         <style>
@@ -21,134 +22,135 @@
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            @auth
+            <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+            @else
+            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
+            @if (Route::has('register'))
+            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
             @endif
+            @endauth
+        </div>
+        @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0 giant antialiased">
-                    OCAP OData v4.01 API
-                </div>
+        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+            <div class="flex justify-center pt-8 sm:justify-start sm:pt-0 giant antialiased">
+                {{ config('app.name') }}
+            </div>
 
-                <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2">
 
-                        <div class="p-6">
-                            <div class="flex items-center">
-                                <div class="text-lg">🔗</div>
-                                <div class="ml-1 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Metadata URLs</div>
-                            </div>
-
-                            <div class="flex items-center">
-                                <div class="ml-4 leading-7 font-semibold"><a href="{{ $ep }}" class="underline text-gray-900 dark:text-white">REST endpoint</a></div>
-                            </div>
-                            <pre class="p0 ml-8 text-gray-600 dark:text-gray-400 text-sm">{{ $ep }}</pre>
-
-                            <div class="flex items-center">
-                                <div class="ml-4 leading-7 font-semibold"><a href="{{ $ep }}$metadata?$format=json" class="underline text-gray-900 dark:text-white">CSDL JSON</a></div>
-                            </div>
-                            <pre class="p0 ml-8 text-gray-600 dark:text-gray-400 text-sm">{{ $ep }}$metadata?$format=json</pre>
-
-                            <div class="flex items-center">
-                                <div class="ml-4 leading-7 font-semibold"><a href="{{ $ep }}$metadata?$format=xml" class="underline text-gray-900 dark:text-white">CSDL XML</a></div>
-                            </div>
-                            <pre class="p0 ml-8 text-gray-600 dark:text-gray-400 text-sm">{{ $ep }}$metadata?$format=xml</pre>
-
-                            <div class="flex items-center">
-                                <div class="ml-4 leading-7 font-semibold"><a href="{{ \Lodata::getOpenApiUrl() }}" class="underline text-gray-900 dark:text-white">OpenAPI v3</a></div>
-                            </div>
-                            <pre class="p0 ml-8 text-gray-600 dark:text-gray-400 text-sm">{{ \Lodata::getOpenApiUrl() }}</pre>
-
-                            <div class="flex items-center">
-                                <div class="ml-4 leading-7 font-semibold"><a href="{{ \Lodata::getPbidsUrl() }}" class="underline text-gray-900 dark:text-white">PowerBI discovery</a></div>
-                            </div>
-                            <pre class="p0 ml-8 text-gray-600 dark:text-gray-400 text-sm">{{ \Lodata::getPbidsUrl() }}</pre>
-
-                            <div class="flex items-center">
-                                <div class="ml-4 leading-7 font-semibold"><a href="{{ \Lodata::getOdcUrl('Operations') }}" class="underline text-gray-900 dark:text-white">Office Data Connection</a></div>
-                            </div>
-                            <pre class="p0 ml-8 text-gray-600 dark:text-gray-400 text-sm">{{ \Lodata::getOdcUrl('Operations') }}</pre>
+                    <div class="p-6">
+                        <div class="flex items-center">
+                            <div class="text-lg">🔗</div>
+                            <div class="ml-1 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Metadata URLs</div>
                         </div>
 
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                            <div class="flex items-center">
-                                <div class="text-lg">📖</div>
-                                <div class="ml-1 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Supported clients</div>
-                            </div>
-
-                            <div class="ml-4">
-                                <a href="https://lodata.io/clients/excel.html" class="mt-2 underline text-gray-900 dark:text-white">Microsoft Excel</a>
-                            </div>
-                            <div class="ml-4">
-                                <a href="https://lodata.io/clients/powerbi.html" class="mt-2 underline text-gray-900 dark:text-white">Microsoft PowerBI</a>
-                            </div>
-                            <div class="ml-4">
-                                <a href="https://lodata.io/clients/openapi.html" class="mt-2 underline text-gray-900 dark:text-white">OpenAPI / Swagger</a>
-                            </div>
-                            <div class="ml-4">
-                                <a href="https://lodata.io/clients/dataverse.html" class="mt-2 underline text-gray-900 dark:text-white">Microsoft Dataverse</a>
-                            </div>
-                            <div class="ml-4">
-                                <a href="https://lodata.io/clients/salesforce.html" class="mt-2 underline text-gray-900 dark:text-white">Salesforce Connect</a>
-                            </div>
-                            <div class="ml-4">
-                                <a href="https://lodata.io/clients/sap.html" class="mt-2 underline text-gray-900 dark:text-white">SAP Data Intelligence</a>
-                            </div>
-                            <div class="ml-4">
-                                <a href="https://lodata.io/clients/devextreme.html" class="mt-2 underline text-gray-900 dark:text-white">DevExtreme</a>
-                            </div>
+                        <div class="flex items-center">
+                            <div class="ml-4 leading-7 font-semibold"><a href="{{ $ep }}" class="underline text-gray-900 dark:text-white">REST endpoint</a></div>
                         </div>
+                        <pre class="p0 ml-8 text-gray-600 dark:text-gray-400 text-sm">{{ $ep }}</pre>
 
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700">
-                            <div class="flex items-center">
-                                <div class="text-lg">📚</div>
-                                <div class="ml-1 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Documentation</div>
-                            </div>
-
-                            <div class="ml-4 mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                lodata, odata2, ocap-stats, ocap, etc.
-                                
-                            </div>
+                        <div class="flex items-center">
+                            <div class="ml-4 leading-7 font-semibold"><a href="{{ $ep }}$metadata?$format=json" class="underline text-gray-900 dark:text-white">CSDL JSON</a></div>
                         </div>
+                        <pre class="p0 ml-8 text-gray-600 dark:text-gray-400 text-sm">{{ $ep }}$metadata?$format=json</pre>
 
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
-                            <div class="flex items-center">
-                                <span class="text-lg">🧠</span>
-                                <div class="ml-1 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Ecosystem</div>
-                            </div>
-
-                            <div class="ml-4 mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                <pre class="scroll">{{ $debug }}</pre>
-                            </div>
+                        <div class="flex items-center">
+                            <div class="ml-4 leading-7 font-semibold"><a href="{{ $ep }}$metadata?$format=xml" class="underline text-gray-900 dark:text-white">CSDL XML</a></div>
                         </div>
-                    </div>
-                </div>
+                        <pre class="p0 ml-8 text-gray-600 dark:text-gray-400 text-sm">{{ $ep }}$metadata?$format=xml</pre>
 
-                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
-                    <div class="text-center text-sm text-gray-500 sm:text-left">
-                        🗄<a href="https://ocap-stats.devs.space" class="ml-1 underline">Data source</a>
-                        &nbsp;
-                        🐙<a href="https://github.com/a-sync/ocap-odata" class="ml-1 underline">ocap-odata @ github</a>
+                        <div class="flex items-center">
+                            <div class="ml-4 leading-7 font-semibold"><a href="{{ \Lodata::getOpenApiUrl() }}" class="underline text-gray-900 dark:text-white">OpenAPI v3</a></div>
+                        </div>
+                        <pre class="p0 ml-8 text-gray-600 dark:text-gray-400 text-sm">{{ \Lodata::getOpenApiUrl() }}</pre>
+
+                        <div class="flex items-center">
+                            <div class="ml-4 leading-7 font-semibold"><a href="{{ \Lodata::getPbidsUrl() }}" class="underline text-gray-900 dark:text-white">PowerBI discovery</a></div>
+                        </div>
+                        <pre class="p0 ml-8 text-gray-600 dark:text-gray-400 text-sm">{{ \Lodata::getPbidsUrl() }}</pre>
+
+                        <div class="flex items-center">
+                            <div class="ml-4 leading-7 font-semibold"><a href="{{ \Lodata::getOdcUrl('Operations') }}" class="underline text-gray-900 dark:text-white">Office Data Connection</a></div>
+                        </div>
+                        <pre class="p0 ml-8 text-gray-600 dark:text-gray-400 text-sm">{{ \Lodata::getOdcUrl('Operations') }}</pre>
                     </div>
 
-                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                        Lodata {{ \Composer\InstalledVersions::getPrettyVersion('flat3/lodata') }}
-                        /
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }}
-                        /
-                        PHP v{{ PHP_VERSION }}
+                    <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
+                        <div class="flex items-center">
+                            <div class="text-lg">📖</div>
+                            <div class="ml-1 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Supported clients</div>
+                        </div>
+
+                        <div class="ml-4">
+                            <a href="https://lodata.io/clients/excel.html" class="mt-2 underline text-gray-900 dark:text-white">Microsoft Excel</a>
+                        </div>
+                        <div class="ml-4">
+                            <a href="https://lodata.io/clients/powerbi.html" class="mt-2 underline text-gray-900 dark:text-white">Microsoft PowerBI</a>
+                        </div>
+                        <div class="ml-4">
+                            <a href="https://lodata.io/clients/openapi.html" class="mt-2 underline text-gray-900 dark:text-white">OpenAPI / Swagger</a>
+                        </div>
+                        <div class="ml-4">
+                            <a href="https://lodata.io/clients/dataverse.html" class="mt-2 underline text-gray-900 dark:text-white">Microsoft Dataverse</a>
+                        </div>
+                        <div class="ml-4">
+                            <a href="https://lodata.io/clients/salesforce.html" class="mt-2 underline text-gray-900 dark:text-white">Salesforce Connect</a>
+                        </div>
+                        <div class="ml-4">
+                            <a href="https://lodata.io/clients/sap.html" class="mt-2 underline text-gray-900 dark:text-white">SAP Data Intelligence</a>
+                        </div>
+                        <div class="ml-4">
+                            <a href="https://lodata.io/clients/devextreme.html" class="mt-2 underline text-gray-900 dark:text-white">DevExtreme</a>
+                        </div>
+                    </div>
+
+                    <div class="p-6 border-t border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center">
+                            <div class="text-lg">📚</div>
+                            <div class="ml-1 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Documentation</div>
+                        </div>
+
+                        <div class="ml-4 mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            lodata, odata2, ocap-stats, ocap, etc.
+
+                        </div>
+                    </div>
+
+                    <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
+                        <div class="flex items-center">
+                            <span class="text-lg">🧠</span>
+                            <div class="ml-1 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Ecosystem</div>
+                        </div>
+
+                        <div class="ml-4 mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            <pre class="scroll">{{ $debug }}</pre>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
+                <div class="text-center text-sm text-gray-500 sm:text-left">
+                    🗄<a href="https://ocap-stats.devs.space" class="ml-1 underline">Data source</a>
+                    &nbsp;
+                    🐙<a href="https://github.com/a-sync/ocap-odata" class="ml-1 underline">ocap-odata @ github</a>
+                </div>
+
+                <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                    Lodata {{ \Composer\InstalledVersions::getPrettyVersion('flat3/lodata') }}
+                    /
+                    Laravel v{{ Illuminate\Foundation\Application::VERSION }}
+                    /
+                    PHP v{{ PHP_VERSION }}
+                </div>
+            </div>
         </div>
+    </div>
     </body>
+
 </html>
