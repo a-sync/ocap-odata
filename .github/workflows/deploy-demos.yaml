@@ -34,7 +34,7 @@ jobs:
       #     php-version: latest
       # - uses: ramsey/composer-install@v2
       #   with:
-      #     composer-options: --no-dev --no-scripts
+      #     composer-options: --no-dev --no-scripts --optimize-autoloader
 
       - name: ✏️ Replace APP_NAME
         uses: jacobtomlinson/gha-find-replace@v3
@@ -59,6 +59,14 @@ jobs:
           regex: false
           find: "env('APP_URL', 'http://localhost')"
           replace: "env('APP_URL', 'https://${{ matrix.config }}-odata.devs.space/')"
+
+      - name: ✏️ Replace APP_KEY
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          include: "config/app.php"
+          regex: false
+          find: "env('APP_KEY')"
+          replace: "env('APP_KEY', '${{ secrets.APP_KEY }}')"
 
       - name: ✏️ Replace DB_DATABASE
         uses: jacobtomlinson/gha-find-replace@v3
