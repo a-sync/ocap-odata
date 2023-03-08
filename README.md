@@ -17,7 +17,7 @@
 You should use env vars (env.example) to configure the database host/user/pw/dbname, but you only need to edit the [DB_URL](./config/database.php#L48) generally.
 
 # Development requirements
- * docker compose 2 or later
+ * docker-compose 2 or later
  * composer 2.2 or later
 
 ## Setup
@@ -36,27 +36,17 @@ LOG_LEVEL=debug
 ```
 
 ## Running locally
+⚠ You need to connnect to an existing ocap-stats database.  
+To quickly spin up your own local database head over to [ocap-stats/SETUP.md](https://github.com/a-sync/ocap-stats/blob/master/SETUP.md) for instructions.
+
+#### Starting up the dev env:
 ```
 docker-compose up
 ```
 
-⚠ You need to load the db schema and a seed from [ocap-stats/.sql/](https://github.com/a-sync/ocap-stats/tree/development/.sql) manually when connecting to the default db instance created via docker-compose.
-
-### Services
+##### Services
  * Web 
-    * http://localhost/
- * Db
-    * host: localhost
-    * port: 3306
-    * user: root
-    * pass: rootpass
- * Adminer
-    * http://localhost:8080  
-    Login data:  
-        * Server: db
-        * Username: root
-        * Password: rootpass
-        * Database: ocapstats
+    * http://localhost:8500/
 
 ### Checking db connection
 ```

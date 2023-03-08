@@ -4,7 +4,4 @@ USER root
 
 RUN apk add --no-cache php81-tokenizer php81-pdo_mysql php81-fileinfo php81-simplexml
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./default.conf /etc/nginx/conf.d/default.conf
-
 USER nobody

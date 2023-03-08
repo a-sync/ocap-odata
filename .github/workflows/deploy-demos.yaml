@@ -57,7 +57,7 @@ jobs:
         with:
           include: "config/app.php"
           regex: false
-          find: "env('APP_URL', 'http://localhost')"
+          find: "env('APP_URL', 'http://localhost:8500')"
           replace: "env('APP_URL', 'https://${{ matrix.config }}-odata.devs.space/')"
 
       - name: ✏️ Replace APP_KEY
@@ -111,4 +111,5 @@ jobs:
             **/.git*
             **/.git*/**
             .runtime/**
+            artisan
             docker-compose.yml
