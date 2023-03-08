@@ -6,6 +6,8 @@ on:
     branches:
       - main
 
+concurrency: demo_environment
+
 jobs:
 
   deploy:
@@ -81,6 +83,14 @@ jobs:
           regex: false
           find: "env('DB_PASSWORD', 'rootpass')"
           replace: "env('DB_PASSWORD', '${{ secrets[matrix.pword_secret] }}')"
+
+      - name: ✏️ Replace LODATA_DISCOVERY_TTL
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          include: "config/lodata.php"
+          regex: false
+          find: "env('LODATA_DISCOVERY_TTL', 0)"
+          replace: "env('LODATA_DISCOVERY_TTL', 300)"
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
