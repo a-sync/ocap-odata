@@ -19,15 +19,15 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Data source URL
+    | ocap-stats source URL
     |--------------------------------------------------------------------------
     |
-    | When this value is configured, a `Data source` link will appear on the
-    | home page pointing to this value.
+    | When this value is configured, ocap-odata can serve commanders data.
+    | A `(source)` link will also appear on the home page pointing to the URL.
     |
     */
 
-    'data_source_url' => env('APP_DATA_SOURCE_URL', null),
+    'ocap_stats_url' => env('APP_OCAP_STATS_URL', null),
 
     /*
     |--------------------------------------------------------------------------
