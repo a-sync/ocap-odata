@@ -1,14 +1,14 @@
 # ocap-odata
 
 # About
- * provides OData v4.01 API to ocap-stats database
+ * provides OData v4.01 API for ocap-stats database
  * built on laravel 10 + loadata 2
  * only a thin layer of eloquent models and lodata traits
 
 # Demo sites
 [fnf-odata.devs.space](https://fnf-odata.devs.space)  
- &nbsp; &rdca; using [fnf-stats.devs.space](https://fnf-stats.devs.space) data  
- &nbsp; &nbsp; &rdca; based on [OCAP2](http://aar.fridaynightfight.org) data from [FNF](https://www.fridaynightfight.org)  
+ &nbsp; &rdca; using [fnf-stats](https://fnf-stats.devs.space) database  
+ &nbsp; &nbsp; &rdca; using [OCAP2](http://aar.fridaynightfight.org) data from [FNF](https://www.fridaynightfight.org)
 
 # Hosting requirements
  * PHP 8.1 or later
