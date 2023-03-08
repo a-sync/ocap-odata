@@ -5,6 +5,11 @@
  * built on laravel 10 + loadata 2
  * only a thin layer of eloquent models and lodata traits
 
+# Demo sites
+[fnf-odata.devs.space](https://fnf-odata.devs.space)  
+ &nbsp; &rdca; using [fnf-stats.devs.space](https://fnf-stats.devs.space) data  
+ &nbsp; &nbsp; &rdca; based on [OCAP2](http://aar.fridaynightfight.org) data from [FNF](https://www.fridaynightfight.org)  
+
 # Hosting requirements
  * PHP 8.1 or later
  * access to ocap-stats database (mysql/mariadb)
@@ -35,11 +40,27 @@ LOG_LEVEL=debug
 docker-compose up
 ```
 
-⚠ You need to load the db schema and a seed from ocap-stats/.sql/ manually when connecting to the default db instance created via docker-compose.
+⚠ You need to load the db schema and a seed from [ocap-stats/.sql/](https://github.com/a-sync/ocap-stats/tree/development/.sql) manually when connecting to the default db instance created via docker-compose.
+
+### Services
+ * Web 
+    * http://localhost/
+ * Db
+    * host: localhost
+    * port: 3306
+    * user: root
+    * pass: rootpass
+ * Adminer
+    * http://localhost:8080  
+    Login data:  
+        * Server: db
+        * Username: root
+        * Password: rootpass
+        * Database: ocapstats
 
 ### Checking db connection
 ```
-./artisan.sh db:show
+php artisan db:show
 ```
 
 #### Shutting down the dev env
@@ -57,9 +78,9 @@ docker-compose up -d
 docker-compose down -v
 docker system prune -a -f --volumes
 composer install
-./artisan.sh route:clear
-./artisan.sh config:clear
-./artisan.sh cache:clear
+php artisan route:clear
+php artisan config:clear
+php artisan cache:clear
 docker-compose build --no-cache
 docker-compose up -d
 ```
