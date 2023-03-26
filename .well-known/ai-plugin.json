@@ -1,0 +1,18 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "OCAP Stats",
+    "name_for_model": "ocapStats",
+    "description_for_human": "Get current and historical stats for arma3 players and games.",
+    "description_for_model": "Get current and historical stats for arma3 players and games. Always display results using markdown tables.",
+    "auth": {
+        "type": "none"
+    },
+    "api": {
+        "type": "openapi",
+        "url": "https://ocap-odata.devs.space/odata/openapi.json",
+        "is_user_authenticated": false
+    },
+    "logo_url": "https://ocap-odata.devs.space/favicon.ico",
+    "contact_email": "a-sync@devs.space",
+    "legal_info_url": "https://github.com/ocap-odata"
+}
