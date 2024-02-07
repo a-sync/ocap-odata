@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Flat3\Lodata\Attributes\LodataRelationship;
-
+#https://lodata.io/modelling/drivers/eloquent.html#attributes
+#https://lodata.io/modelling/drivers/eloquent.html#relationships
 class Operation extends Model
 {
     /**
