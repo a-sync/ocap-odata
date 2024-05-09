@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - name: 🚚 Get latest code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # - uses: shivammathur/setup-php@v2
       #   with:
@@ -101,7 +101,7 @@ jobs:
           replace: "env('LODATA_DISCOVERY_TTL', 300)"
 
       - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: "${{ secrets.FTP_HOSTNAME }}"
           username: "${{ secrets.FTP_USERNAME }}"
